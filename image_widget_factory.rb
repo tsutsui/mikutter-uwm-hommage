@@ -77,7 +77,7 @@ class ImageWidgetFactory
 
     layout = Gtk::ScrolledWindow.new
     layout.shadow_type = Gtk::ShadowType::NONE
-    layout.width_request = 500 # なんもわからん
+    layout.propagate_natural_width = true
     layout.vscrollbar_policy = :never
     layout.hscrollbar_policy = :always
     layout.add(viewport)
