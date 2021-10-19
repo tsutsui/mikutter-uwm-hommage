@@ -69,17 +69,9 @@ class Gtk::PostBox
     @extra_box = Gtk::Box.new :vertical
     post_box = generate_box_org
 
-    # 追加ウィジェットを填めるボックスを追加
-    @extra_button_area = if post_box.children[0].is_a?(Gtk::Grid)
-      # 通常の Postbox の場合は tool + post + remain + send の 投稿用 widget の
-      # Gtk::Grid のみを持つ
-      post_box.children[0]
-    else
-      # リプライPostbox の場合は追加される返信元 Gtk::IntelligentTextview を
-      # 子に持つ Gtk::EventBox が children[0] になっているっぽい。
-      # そんなんわからんて。
-      post_box.children[1]
-    end
+    # 追加ウィジェットを填めるボックスを追加。
+    # mikutter_gtk3 の generate_box は Gtk::Grid で、一番上が投稿欄。
+    @extra_button_area = post_box.get_child_at(0, 0)
 
     @extra_box.add(post_box)
   end
